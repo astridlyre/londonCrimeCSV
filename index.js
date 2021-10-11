@@ -7,5 +7,5 @@ const csvStream = createReadStream(process.argv[2] || './data/data.csv').pipe(cs
 const outputFile = process.argv[3] || 'output.json'
 const destinationStream = createWriteStream(outputFile, 'utf8', { end: false })
 
-const app = createApp(csvStream, destinationStream)
+const app = createApp(csvStream, destinationStream, { countLines: true })
 app.parse()

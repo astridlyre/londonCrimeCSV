@@ -5,11 +5,15 @@ import { TallyCrimeYears, CrimeYearResults } from './lib/crimeYears.js'
 import { CombineResults } from './lib/results.js'
 
 class CrimeStatistics {
-  constructor(inputStream, outputStream) {
+  constructor(inputStream, outputStream, options = {}) {
     this.inputStream = inputStream
 
     this.streams = []
-    this.inputStream.pipe(createLineCounter())
+
+    if (options.countLines === true) {
+      this.inputStream.pipe(createLineCounter())
+    }
+
     this.mergeResults = new CombineResults({
       numberOfStreams: 2,
       outputStream,
@@ -36,8 +40,8 @@ class CrimeStatistics {
   }
 }
 
-export function createApp(inputStream, outputStream) {
-  const app = new CrimeStatistics(inputStream, outputStream)
+export function createApp(inputStream, outputStream, options) {
+  const app = new CrimeStatistics(inputStream, outputStream, options)
   app.register([new TallyCrimeAreas(), new CrimeAreaResults()])
   app.register([new TallyCrimeYears(), new CrimeYearResults()])
   return app
