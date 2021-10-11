@@ -1,0 +1,20 @@
+{
+  "name": "londoncrimedata",
+  "version": "1.0.0",
+  "description": "London Crime Data Analysis Application",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js data/data.csv output.json",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "Erin Burton",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^9.1.2"
+  },
+  "dependencies": {
+    "csv-parse": "^4.16.3"
+  }
+}
